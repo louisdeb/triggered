@@ -12,5 +12,11 @@
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/"
-  ]
+  ],
+
+  "content_scripts": [{
+    "css": ["safespace/safe.css"],
+    "js": ["safespace/safe.js"],
+    "matches": ["http://*/*", "https://*/*"]
+  }]
 }
