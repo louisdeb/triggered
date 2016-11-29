@@ -19,7 +19,7 @@ function explore(node) {
   /* If there are no children DIVs which match, delete this DIV. */
   if (matchingChildren.length == 0) {
     // We have to check for other types of node containing matches here.
-    node.remove();
+    remove(node);
   }
 
   /* Explore the children nodes which match the regex and are a DIV. */
@@ -30,11 +30,36 @@ function explore(node) {
 
 /* Performs regex matching. */
 function containsMatch(string) {
-  let regex = /test match/g;
+  let regex = /test string/g;
   return string.match(regex);
 }
 
+/* Removes a node. 
+   Checks the URL to see if we can remove a larger section of the page, defined 
+   by the match in the inner node. */
+function remove(node) {
+  if (document.URL.includes(".facebook.")) {
+    removeOnFacebook(node);
+  }
+
+  node.remove();
+}
+
+function removeOnFacebook(node) {
+  let desiredClass = "userContentWrapper";
+
+  while (node != null) {
+    let nodeClass = node.className;
+
+    if (nodeClass.includes(desiredClass) || node.parentNode == null) {
+      node.remove();
+      node = null;
+    } else {
+      node = node.parentNode;
+    }
+  }
+}
+
 // TODO: Notice updates to page content and recheck page
-// e.g. When scrolling down on Facebook and new content appears, does it get removed?
-// Prediction: no
-// Tested with "commented" 
+// e.g. When scrolling down on Facebook and new content appears it does not
+// get removed. 
