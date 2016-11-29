@@ -1,0 +1,19 @@
+body {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 0;
+  width: 200px;
+}
+
+input {
+  font-size: 14px;
+  width: 100%;
+}
+
+#filtered-header {
+  display: none;
+}
+
+#filtered-list {
+  display: none;
+}
