@@ -34,8 +34,8 @@ function containsMatch(string) {
   return string.match(regex);
 }
 
-/* Removes a node. 
-   Checks the URL to see if we can remove a larger section of the page, defined 
+/* Removes a node.
+   Checks the URL to see if we can remove a larger section of the page, defined
    by the match in the inner node. */
 function remove(node) {
   if (document.URL.includes(".facebook.")) {
@@ -62,4 +62,4 @@ function removeOnFacebook(node) {
 
 // TODO: Notice updates to page content and recheck page
 // e.g. When scrolling down on Facebook and new content appears it does not
-// get removed. 
+// get removed.

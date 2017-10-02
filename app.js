@@ -8,14 +8,26 @@ document.addEventListener('DOMContentLoaded', function() {
   input = document.getElementById('filter-input');
   input.addEventListener('keypress', inputPress);
 
-  /* Populate filtered words list. */
+  populateFilteredList();
 });
+
+function populateFilteredList() {
+  console.log("populating list");
+
+  chrome.storage.sync.get(STORAGE_KEY, function(result) {
+    let storedWords = result.triggering;
+    console.log(storedWords);
+    for (word in storedWords) {
+      console.log("displaying " + storedWords[word]);
+    }
+  });
+}
 
 function inputPress(event) {
   if (event.keyCode != ENTER_BUTTON_ID) {
     return;
   }
-  
+
   let inputString = input.value;
   if (inputString == null || inputString == "") { return; }
 
@@ -39,4 +51,12 @@ function addWord(word) {
       });
     }
   });
+}
+
+function displayWord(word) {
+  let list = document.getElementById('filtered-list');
+  var itemNode = document.createElement('LI');
+  var textNode = document.createTextNode(storedWords[word]);
+  itemNode.appendChild(textNode);
+  list.appendChild(itemNode);
 }
